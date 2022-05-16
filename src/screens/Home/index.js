@@ -13,8 +13,15 @@ import {
 import { Link } from "react-router-dom";
 import Img from "./Img/ART-13038_I2s2B42z5D4r6QHqQHWJ.jpg";
 import Background from "./Img/skull-artwork-death-dark-2K-wallpaper.jpg";
+import { filmesCadastrados } from "../../utils/mock"
 
 function Home() {
+
+  const [filmes, setFilmes] = React.useState([]);
+  React.useEffect(() => {
+    setFilmes(filmesCadastrados);
+  }, []);
+
   return (
     <div
       style={{
@@ -28,7 +35,7 @@ function Home() {
         border: 0,
       }}
     >
-      <Link to="./">
+      <Link to="/">
         <img src={Img} width="150" height="170" />
       </Link>
       <Navbar.Text
@@ -41,56 +48,29 @@ function Home() {
       >
         Filmes, Series e desenhos Online|
       </Navbar.Text>
-      {/* 
-            <Row >
-                <Col sm={3}>
-                    <Figure>
-                        <Figure.Image
-                            width={171}
-                            height={210}
-                            alt="171x180"
-                            src="https://ingresso-a.akamaihd.net/prd/img/movie/sonic-2/fde04f56-1afb-4c71-9ff2-97dac723f8d8.jpg"
-                        />
-                    </Figure>
-                </Col>
 
-                <Figure>
-                    <Figure.Image
-                        width={171}
-                        height={210}
-                        alt="171x180"
-                        src="https://ingresso-a.akamaihd.net/prd/img/movie/sonic-2/fde04f56-1afb-4c71-9ff2-97dac723f8d8.jpg"
-                    />
-                </Figure>
-            </Row> */}
       <Row>
-        <Col md={1}>
-          <Card>
-            <Card.Img
-              style={{ height: 210, width: 171 }}
-              variant="top"
-              src="https://ingresso-a.akamaihd.net/prd/img/movie/sonic-2/fde04f56-1afb-4c71-9ff2-97dac723f8d8.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        </Col>
+        {filmesCadastrados.map((f) => {
+          return (
+            <>
+              <Col md={2}>
+                <Card style={{ backgroundColor: 'transparent' }}>
+                  <Card.Img
+                    style={{ height: 233, width: 204 }}
+                    variant="top"
+                    src={f.img}
+                  />
+                  <Card.Body>
+                    <Card.Title style={{ color: 'red' }}>Card Title</Card.Title>
+                    <Button variant="primary">Go somewhere</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
 
-        <Col md={3}>
-          <Card>
-            <Card.Img
-              style={{ height: 210, width: 171 }}
-              variant="top"
-              src="https://ingresso-a.akamaihd.net/prd/img/movie/sonic-2/fde04f56-1afb-4c71-9ff2-97dac723f8d8.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        </Col>
+
+            </>
+          )
+        })}
       </Row>
     </div>
   );
