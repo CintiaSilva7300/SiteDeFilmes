@@ -11,9 +11,10 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Img from "./Img/ART-13038_I2s2B42z5D4r6QHqQHWJ.jpg";
+import Img from "./Img/esboço.PNG";
 import Background from "./Img/skull-artwork-death-dark-2K-wallpaper.jpg";
 import { filmesCadastrados } from "../../utils/mock"
+import { FaCloudDownloadAlt, FaSearchPlus } from 'react-icons/fa';
 
 function Home() {
 
@@ -29,49 +30,50 @@ function Home() {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        minHeight: 937,
+        minHeight: 940,
         padding: 0,
         margin: 0,
         border: 0,
       }}
     >
-      <Link to="/">
-        <img src={Img} width="150" height="170" />
-      </Link>
-      <Navbar.Text
-        style={{
+
+      <Container>
+        <Navbar>
+          <h1 style={{ color: 'white', fontSize: 30, marginTop: 10, marginLeft: '55%' }}>
+            Filmes, Series e desenhos Online|
+          </h1></Navbar>
+
+        <h2 variant="secondary" style={{
           color: "white",
-          fontSize: 30,
-          fontFamily: "inherit",
-          whiteSpace: "nowrap",
-        }}
-      >
-        Filmes, Series e desenhos Online|
-      </Navbar.Text>
+          fontSize: 20,
+          marginTop: 20,
+        }}>Terror|</h2>
 
-      <Row>
-        {filmesCadastrados.map((f) => {
-          return (
-            <>
-              <Col md={2}>
-                <Card style={{ backgroundColor: 'transparent' }}>
-                  <Card.Img
-                    style={{ height: 233, width: 204 }}
-                    variant="top"
-                    src={f.img}
-                  />
-                  <Card.Body>
-                    <Card.Title style={{ color: 'red' }}>Card Title</Card.Title>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-
-            </>
-          )
-        })}
-      </Row>
+        <Row md={1}>
+          {filmesCadastrados.map((f) => {
+            return (
+              <>
+                <Col md={2}>
+                  <Card style={{ backgroundColor: 'transparent' }}>
+                    <Card.Img
+                      style={{ height: 233, width: 170, display: 'inline-block' }}
+                      variant="top"
+                      src={f.img}
+                    />
+                    <Card.Body>
+                      <Button variant="secondary" style={{
+                        fontSize: 13,
+                        width: 150
+                      }}><FaCloudDownloadAlt /> Baixar
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </>
+            )
+          })}
+        </Row>
+      </Container>
     </div>
   );
 }
